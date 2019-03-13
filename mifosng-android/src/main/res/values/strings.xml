@@ -152,9 +152,7 @@
     <string name="status">Status</string>
     <string name="unique_id">Unique Id</string>
     <string name="identifier_created_successfully">Identifier Created Successfully</string>
-    <string name="empty_identifier_document_type">Identifier Document Type ID is Empty \n
-        or May be, Identifier Template couldn\'t to be fetched. Please Check your Internet
-    Connection</string>
+    <string name="empty_identifier_document_type">Identifier Document Type ID is Empty   or May be, Identifier Template couldn\'t to be fetched. Please Check your Internet Connection</string>
     <string name="data_table_entry_added">DataTable entry added successfully</string>
     <string name="unique_id_required">Unique Id is required!</string>
     <string name="update">Update</string>
@@ -506,7 +504,7 @@
     <string name="error_group_inactive">Group Inactive</string>
     <string name="error_center_inactive">Center Inactive</string>
     <string name="error_to_activate_savingsaccount">Error To Activate SavingsAccount</string>
-    <string name="error_submitting_survey">Error While Submitting Survey.\nPlease Try Again</string>
+    <string name="error_submitting_survey">Error While Submitting Survey. Please Try Again</string>
 
     <!-- DropDown Defaults -->
     <string name="spinner_office">Select Office</string>
@@ -590,16 +588,9 @@
 
     <!--Material Dialog Message-->
     <string name="dialog_message">Message</string>
-    <string name="dialog_message_offline_sync_alert">You are in offline mode, for syncing, You
-        need to switch Online mode. \n\nIf you are trying to sync Please make sure
-        your internet connection is working well</string>
-    <string name="dialog_message_sync_transaction">Please Sync Previous LoanRepayment with
-        This Loan Id First. \n\nGo to Navigation Menu \'Offline Sync *\' and Sync transaction First.
-        \n\nBefore making new LoanRepayment Transaction with this LoanAccount</string>
-    <string name="dialog_message_sync_savingaccounttransaction">Please Sync Previous Transaction
-        with This Savings Account Id First. \n\nGo to Navigation Menu \'Offline Sync *\' and Sync
-        transaction First.
-        \n\nBefore making new SavingAccount Transaction with this SavingAccount</string>
+    <string name="dialog_message_offline_sync_alert">You are in offline mode, for syncing, You need to switch Online mode.   If you are trying to sync Please make sure your internet connection is working well</string>
+    <string name="dialog_message_sync_transaction">Please Sync Previous LoanRepayment with This Loan Id First.   Go to Navigation Menu \'Offline Sync *\' and Sync transaction First.   Before making new LoanRepayment Transaction with this LoanAccount</string>
+    <string name="dialog_message_sync_savingaccounttransaction">Please Sync Previous Transaction with This Savings Account Id First.   Go to Navigation Menu \'Offline Sync *\' and Sync transaction First.   Before making new SavingAccount Transaction with this SavingAccount</string>
     <string name="dialog_message_read_external_storage_permission_denied">Without this
         permission the app would be unable to upload any document. When uploading a document, the app
         requires access to photos, media and files on your device. Are you sure you want to deny this
@@ -621,7 +612,7 @@
         permission to access fine location, but you had previously checked the Button Never
         Ask Again.
     </string>
-    <string name="msg_setting_activity_not_found">Something went wrong while finding Settings activity.\n        \nGo to \'Settings\' and grant permission manually.</string>
+    <string name="msg_setting_activity_not_found">Something went wrong while finding Settings activity.   Go to \'Settings\' and grant permission manually.</string>
 
     <!--Material Dialog-->
     <string name="dialog_action_ok">OK</string>
