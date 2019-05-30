@@ -8,15 +8,15 @@ package com.mifos.mifosxdroid.online;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.VisibleForTesting;
-import android.support.design.widget.NavigationView;
-import android.support.test.espresso.IdlingResource;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.SwitchCompat;
+import androidx.annotation.VisibleForTesting;
+import com.google.android.material.navigation.NavigationView;
+import androidx.test.espresso.IdlingResource;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.SwitchCompat;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +31,7 @@ import com.mifos.mifosxdroid.activity.pathtracking.PathTrackingActivity;
 import com.mifos.mifosxdroid.core.MifosBaseActivity;
 import com.mifos.mifosxdroid.offline.offlinedashbarod.OfflineDashboardFragment;
 import com.mifos.mifosxdroid.online.centerlist.CenterListFragment;
+import com.mifos.mifosxdroid.online.checkerinbox.CheckerInboxPendingTasksActivity;
 import com.mifos.mifosxdroid.online.clientlist.ClientListFragment;
 import com.mifos.mifosxdroid.online.createnewcenter.CreateNewCenterFragment;
 import com.mifos.mifosxdroid.online.createnewclient.CreateNewClientFragment;
@@ -206,6 +207,10 @@ public class DashboardActivity extends MifosBaseActivity
             case R.id.item_centers:
                 replaceFragment(CenterListFragment.newInstance(), false, R.id.container);
                 break;
+            case R.id.item_checker_inbox:
+                intent.setClass(this, CheckerInboxPendingTasksActivity.class);
+                startActivity(intent);
+                break;
             case R.id.item_path_tracker:
                 intent.setClass(getApplicationContext(), PathTrackingActivity.class);
                 startNavigationClickActivity(intent);
@@ -375,5 +380,3 @@ public class DashboardActivity extends MifosBaseActivity
         return EspressoIdlingResource.getIdlingResource();
     }
 }
-
-
