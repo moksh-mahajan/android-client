@@ -15,6 +15,7 @@ import com.mifos.mifosxdroid.dialogfragments.syncsurveysdialog.SyncSurveysDialog
 import com.mifos.mifosxdroid.injection.PerActivity;
 import com.mifos.mifosxdroid.injection.module.ActivityModule;
 import com.mifos.mifosxdroid.login.LoginActivity;
+import com.mifos.mifosxdroid.online.CheckerInboxActivity;
 import com.mifos.mifosxdroid.online.runreports.report.ReportFragment;
 import com.mifos.mifosxdroid.online.runreports.reportcategory.ReportCategoryFragment;
 import com.mifos.mifosxdroid.online.runreports.reportdetail.ReportDetailFragment;
@@ -208,5 +209,7 @@ public interface ActivityComponent {
     void inject(CollectionSheetDialogFragment collectionSheetDialogFragment);
 
     void inject(PaymentDetailsFragment paymentDetailsFragment);
+
+    void inject(CheckerInboxActivity checkerInboxActivity);
 
 }

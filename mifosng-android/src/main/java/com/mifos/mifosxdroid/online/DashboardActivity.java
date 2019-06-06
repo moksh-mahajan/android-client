@@ -206,6 +206,10 @@ public class DashboardActivity extends MifosBaseActivity
             case R.id.item_centers:
                 replaceFragment(CenterListFragment.newInstance(), false, R.id.container);
                 break;
+            case R.id.item_checker_inbox:
+                intent.setClass(this, CheckerInboxActivity.class);
+                startActivity(intent);
+                break;
             case R.id.item_path_tracker:
                 intent.setClass(getApplicationContext(), PathTrackingActivity.class);
                 startNavigationClickActivity(intent);
