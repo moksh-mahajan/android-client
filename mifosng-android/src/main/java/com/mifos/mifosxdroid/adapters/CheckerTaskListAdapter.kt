@@ -9,15 +9,16 @@ import com.mifos.mifosxdroid.R
 import com.mifos.objects.CheckerTask
 import kotlinx.android.synthetic.main.item_checker_task.view.*
 
-class CheckerTaskListAdapter(var items: List<CheckerTask>,
-                             var context: Context) : RecyclerView.Adapter<ViewHolder>(){
+class CheckerTaskListAdapter(var items: List<CheckerTask>, var context: Context)
+    : RecyclerView.Adapter<CheckerTaskListAdapter.ViewHolder>(){
 
     override fun getItemCount(): Int {
         return items.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_checker_task, parent,
+        return ViewHolder(LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_checker_task, parent,
                 false))
     }
 
@@ -28,12 +29,13 @@ class CheckerTaskListAdapter(var items: List<CheckerTask>,
         holder?.tvCheckerTaskAction.text = items.get(position).action
         holder?.tvCheckerTaskEntity.text = items.get(position).entity
     }
+
+    class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+        val tvCheckerTaskId = view.tv_checker_task_id
+        val tvCheckerTaskDate = view.tv_checker_task_date
+        val tvCheckerTaskStatus = view.tv_checker_task_status
+        val tvCheckerTaskAction = view.tv_checker_task_action
+        val tvCheckerTaskEntity = view.tv_checker_task_entity
+    }
 }
 
-class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-    val tvCheckerTaskId = view.tv_checker_task_id
-    val tvCheckerTaskDate = view.tv_checker_task_date
-    val tvCheckerTaskStatus = view.tv_checker_task_status
-    val tvCheckerTaskAction = view.tv_checker_task_action
-    val tvCheckerTaskEntity = view.tv_checker_task_entity
-}

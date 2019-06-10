@@ -31,6 +31,8 @@ import com.mifos.mifosxdroid.activity.pathtracking.PathTrackingActivity;
 import com.mifos.mifosxdroid.core.MifosBaseActivity;
 import com.mifos.mifosxdroid.offline.offlinedashbarod.OfflineDashboardFragment;
 import com.mifos.mifosxdroid.online.centerlist.CenterListFragment;
+import com.mifos.mifosxdroid.online.checkerinbox.CheckerInboxActivity;
+import com.mifos.mifosxdroid.online.checkerinbox.CheckerInboxPendingTasksActivity;
 import com.mifos.mifosxdroid.online.clientlist.ClientListFragment;
 import com.mifos.mifosxdroid.online.createnewcenter.CreateNewCenterFragment;
 import com.mifos.mifosxdroid.online.createnewclient.CreateNewClientFragment;
@@ -147,7 +149,6 @@ public class DashboardActivity extends MifosBaseActivity
      * sets up the navigation mDrawer in the activity
      */
     protected void setupNavigationBar() {
-
         mNavigationHeader = mNavigationView.getHeaderView(0);
         setupUserStatusToggle();
         mNavigationView.setNavigationItemSelectedListener(this);
@@ -207,7 +208,7 @@ public class DashboardActivity extends MifosBaseActivity
                 replaceFragment(CenterListFragment.newInstance(), false, R.id.container);
                 break;
             case R.id.item_checker_inbox:
-                intent.setClass(this, CheckerInboxActivity.class);
+                intent.setClass(this, CheckerInboxPendingTasksActivity.class);
                 startActivity(intent);
                 break;
             case R.id.item_path_tracker:

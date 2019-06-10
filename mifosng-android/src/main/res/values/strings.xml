@@ -774,7 +774,11 @@
     <string name="error_passcode">Passcode should be of 4 digit</string>
     <string name="title_activity_sync_client_payload" translatable="false">SyncClientPayloadActivity</string>
     <string name="client_search_hint"></string>
+    <string name="checker_inbox_and_pending_tasks">Checker Inbox &amp; Tasks</string>
+    <string name="client_approval">Client Approval</string>
+    <string name="loan_approval">Loan Approval</string>
+    <string name="loan_disbursal">Loan Disbursal</string>
+    <string name="reschedule_loan">Reschedule Loan</string>
     <string name="checker_inbox">Checker Inbox</string>
-
 
 </resources>

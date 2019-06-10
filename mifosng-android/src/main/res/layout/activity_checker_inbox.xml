@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="300dp"
         android:id="@+id/btn_checker_tester"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
     <TextView
         android:layout_width="wrap_content"

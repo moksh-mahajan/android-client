@@ -1,108 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout android:id="@+id/rl_checker_inbox"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:padding="12dp">
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:minHeight="@dimen/dimension_72_dp"
+    android:paddingLeft="@dimen/layout_padding_24dp"
+    android:paddingRight="@dimen/layout_padding_24dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/iv_checker_inbox_icon"
+        android:layout_width="@dimen/dimension_32_dp"
+        android:layout_height="@dimen/dimension_32_dp"
+        android:layout_centerVertical="true"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/ic_mail_outline_24dp" />
+
+    <TextView
+        android:id="@+id/tv_checker_inbox"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/layout_padding_16dp"
+        android:layout_toRightOf="@+id/iv_checker_inbox_icon"
+        android:singleLine="true"
+        android:textStyle="bold"
+        android:text="@string/checker_inbox"
+        android:textColor="#222222"
+        />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ID"
-            android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/badge_checker_inbox"
+        style="@style/badge_style"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        tools:text="23" />
+</RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_checker_task_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            tools:text="ID" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Made on Date"
-            android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/tv_checker_task_date"
-            android:layout_width="match_parent"
-            android:gravity="right"
-            android:layout_height="wrap_content"
-            tools:text="Made on Date" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status"
-            android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/tv_checker_task_status"
-            android:layout_width="match_parent"
-            android:gravity="right"
-            android:layout_height="wrap_content"
-            tools:text="Status" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Action"
-            android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/tv_checker_task_action"
-            android:layout_width="match_parent"
-            android:gravity="right"
-            android:layout_height="wrap_content"
-            tools:text="Action" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Entity"
-            android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/tv_checker_task_entity"
-            android:layout_width="match_parent"
-            android:gravity="right"
-            android:layout_height="wrap_content"
-            tools:text="Entity" />
-    </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"/>
-</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="12dp">-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="ID"-->
+            <!--android:textStyle="bold"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_checker_task_id"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="right"-->
+            <!--tools:text="ID" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Made on Date"-->
+            <!--android:textStyle="bold"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_checker_task_date"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:gravity="right"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--tools:text="Made on Date" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Status"-->
+            <!--android:textStyle="bold"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_checker_task_status"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:gravity="right"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--tools:text="Status" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Action"-->
+            <!--android:textStyle="bold"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_checker_task_action"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:gravity="right"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--tools:text="Action" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Entity"-->
+            <!--android:textStyle="bold"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_checker_task_entity"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:gravity="right"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--tools:text="Entity" />-->
+    <!--</LinearLayout>-->
+
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="@color/black"/>-->
+<!--</LinearLayout>-->
