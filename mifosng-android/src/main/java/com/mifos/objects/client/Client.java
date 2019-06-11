@@ -106,6 +106,8 @@ public class Client extends MifosBaseModel implements Parcelable {
      */
     public String getGroupNames() {
         String groupNames = "";
+        if (groups.isEmpty())
+            return "";
         if (groups.size() == 1)
             return groups.get(0).getName();
         for (Group group: groups) {
