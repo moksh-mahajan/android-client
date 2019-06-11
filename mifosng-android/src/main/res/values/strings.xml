@@ -774,6 +774,11 @@
     <string name="error_passcode">Passcode should be of 4 digit</string>
     <string name="title_activity_sync_client_payload" translatable="false">SyncClientPayloadActivity</string>
     <string name="client_search_hint"></string>
+    <string name="Image_Upload_Successful">Image Upload Successful</string>
+    <string name="Image_Upload_Failed">Image Upload Failed</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="take_a_photo">Take a Photo</string>
+    <string name="remove_existing_photo">Remove Existing Photo</string>
 
 
 </resources>
