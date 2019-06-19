@@ -16,6 +16,7 @@ import com.mifos.mifosxdroid.injection.PerActivity;
 import com.mifos.mifosxdroid.injection.module.ActivityModule;
 import com.mifos.mifosxdroid.login.LoginActivity;
 import com.mifos.mifosxdroid.online.checkerinbox.CheckerInboxActivity;
+import com.mifos.mifosxdroid.online.checkerinbox.CheckerInboxFragment;
 import com.mifos.mifosxdroid.online.checkerinbox.CheckerInboxPendingTasksActivity;
 import com.mifos.mifosxdroid.online.checkerinbox.CheckerInboxTasksFragment;
 import com.mifos.mifosxdroid.online.runreports.report.ReportFragment;
@@ -217,5 +218,7 @@ public interface ActivityComponent {
     void inject(CheckerInboxPendingTasksActivity checkerInboxActivity);
 
     void inject(CheckerInboxTasksFragment checkerInboxTasksFragment);
+
+    void inject(CheckerInboxFragment checkerInboxFragment);
 
 }

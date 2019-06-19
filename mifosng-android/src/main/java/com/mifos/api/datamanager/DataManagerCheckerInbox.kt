@@ -6,7 +6,7 @@ import com.mifos.objects.CheckerTask
 import com.mifos.objects.checkerinboxandtasks.RescheduleLoansTask
 import rx.Observable
 import javax.inject.Inject
-import javax.inject.Singleton
+
 
 
 class DataManagerCheckerInbox @Inject constructor(){

@@ -13,7 +13,7 @@ import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
 
-class CheckerInboxTasksViewModel@Inject constructor (
+class CheckerInboxTasksViewModel @Inject constructor(
         val dataManager: DataManagerCheckerInbox,
         val subscription: CompositeSubscription
 ) : ViewModel() {
@@ -26,6 +26,8 @@ class CheckerInboxTasksViewModel@Inject constructor (
         }
     }
 
+    var status = MutableLiveData<Boolean>()
+
     private val rescheduleLoanTasksLive: MutableLiveData<List<RescheduleLoansTask>> by lazy {
         Log.i("abc", "Lazy initialization begins...")
         MutableLiveData<List<RescheduleLoansTask>>().also {
@@ -34,7 +36,7 @@ class CheckerInboxTasksViewModel@Inject constructor (
         }
     }
 
-    fun getRescheduleLoanTasks(): LiveData<List<RescheduleLoansTask>> {
+    fun getRescheduleLoanTasks(): MutableLiveData<List<RescheduleLoansTask>> {
         Log.i("abc", "getRescheduleLoanTasks")
         return rescheduleLoanTasksLive
     }
@@ -88,6 +90,7 @@ class CheckerInboxTasksViewModel@Inject constructor (
                     override fun onNext(checkerTasks: List<CheckerTask>) {
                         //Log.i("abc", "onNext called")
                         checkerTasksLive.postValue(checkerTasks)
+                        status.value = true
                         //Log.i("abc", "After postValue "+ checkerTasks)
                     }
                 }))

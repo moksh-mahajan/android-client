@@ -66,12 +66,12 @@ class CheckerInboxActivity : MifosBaseActivity() {
 
         checkerInboxViewModel.getCheckerTasks().observe(this,
                 Observer<List<CheckerTask>>() {
-                    var checkerTaskListAdapter =
-                            CheckerTaskListAdapter(it!!,
-                                    this@CheckerInboxActivity)
-                    //hideProgress()
-
-                        rv_checker_task_list.adapter = checkerTaskListAdapter
+//                    var checkerTaskListAdapter =
+//                            CheckerTaskListAdapter(it!!,
+//                                    this@CheckerInboxActivity)
+//                    //hideProgress()
+//
+//                        rv_checker_task_list.adapter = checkerTaskListAdapter
                 })
 
 

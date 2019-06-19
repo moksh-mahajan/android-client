@@ -21,6 +21,9 @@ class CheckerInboxViewModelFactory @Inject constructor(
         if (modelClass.isAssignableFrom(CheckerInboxTasksViewModel::class.java)) {
             return CheckerInboxTasksViewModel(dataManagerCheckerInbox, subscription) as T
         }
+        if (modelClass.isAssignableFrom(CheckerInboxViewModel2::class.java)) {
+            return CheckerInboxViewModel2(dataManagerCheckerInbox, subscription) as T
+        }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }
 
