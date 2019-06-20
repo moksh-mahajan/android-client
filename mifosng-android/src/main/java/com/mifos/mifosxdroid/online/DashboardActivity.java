@@ -31,7 +31,6 @@ import com.mifos.mifosxdroid.activity.pathtracking.PathTrackingActivity;
 import com.mifos.mifosxdroid.core.MifosBaseActivity;
 import com.mifos.mifosxdroid.offline.offlinedashbarod.OfflineDashboardFragment;
 import com.mifos.mifosxdroid.online.centerlist.CenterListFragment;
-import com.mifos.mifosxdroid.online.checkerinbox.CheckerInboxActivity;
 import com.mifos.mifosxdroid.online.checkerinbox.CheckerInboxPendingTasksActivity;
 import com.mifos.mifosxdroid.online.clientlist.ClientListFragment;
 import com.mifos.mifosxdroid.online.createnewcenter.CreateNewCenterFragment;

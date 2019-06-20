@@ -26,7 +26,9 @@ class CheckerInboxTasksFragment : MifosBaseFragment() {
     companion object {
         fun newInstance() = CheckerInboxTasksFragment()
     }
-    @Inject lateinit var factory : CheckerInboxViewModelFactory
+
+    @Inject
+    lateinit var factory: CheckerInboxViewModelFactory
     private lateinit var viewModel: CheckerInboxTasksViewModel
     private lateinit var rootView: View
 
@@ -46,7 +48,7 @@ class CheckerInboxTasksFragment : MifosBaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (!isOnline)
-            Toaster.show(rootView,"Device offline")
+            Toaster.show(rootView, "Device offline")
         showMifosProgressBar()
         viewModel = ViewModelProviders.of(
                 this, factory
@@ -73,14 +75,9 @@ class CheckerInboxTasksFragment : MifosBaseFragment() {
         rl_checker_inbox.setOnClickListener {
             val fragmentTransaction = activity!!
                     .supportFragmentManager.beginTransaction()
-            fragmentTransaction.addToBackStack("ClientCategory")
+            fragmentTransaction.addToBackStack("Checker Inbox")
             fragmentTransaction.replace(R.id.container,
                     CheckerInboxFragment.newInstance()).commit()
-
-
         }
-
-
     }
-
 }

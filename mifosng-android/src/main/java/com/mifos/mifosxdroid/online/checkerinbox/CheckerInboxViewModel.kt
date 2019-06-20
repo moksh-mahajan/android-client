@@ -2,128 +2,116 @@ package com.mifos.mifosxdroid.online.checkerinbox
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModel;
 import android.util.Log
 import com.mifos.api.GenericResponse
 import com.mifos.api.datamanager.DataManagerCheckerInbox
 import com.mifos.objects.CheckerTask
+import com.mifos.objects.checkerinboxandtasks.RescheduleLoansTask
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
 
-class CheckerInboxViewModel @Inject constructor (
+enum class Status {
+    APPROVE_SUCCESS,
+    APPROVE_ERROR,
+    REJECT_SUCCESS,
+    REJECT_ERROR,
+    DELETE_SUCCESS,
+    DELETE_ERROR,
+}
+
+class CheckerInboxViewModel @Inject constructor(
         val dataManager: DataManagerCheckerInbox,
         val subscription: CompositeSubscription
 ) : ViewModel() {
-    //val subscription = CompositeSubscription()
-    //val dataManager = DataManagerCheckerInbox()
+
     private val checkerTasksLive: MutableLiveData<List<CheckerTask>> by lazy {
-        Log.i("abc", "Lazy initialization begins...")
         MutableLiveData<List<CheckerTask>>().also {
-            Log.i("abc", "Also called...")
             loadCheckerTasks()
         }
     }
 
+    private val status = MutableLiveData<Status>()
+
     fun getCheckerTasks(): LiveData<List<CheckerTask>> {
-        Log.i("abc", "getCheckerTasks")
         return checkerTasksLive
     }
 
+    fun getStatus(): LiveData<Status> {
+        return status
+    }
+
     private fun loadCheckerTasks() {
-        Log.i("abc", "loadusers called")
-        // Do an asynchronous operation to fetch users.
         subscription.add(dataManager.getCheckerTaskList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(object : Subscriber<List<CheckerTask>>() {
                     override fun onCompleted() {
-
                     }
 
                     override fun onError(e: Throwable) {
-
-
                     }
 
                     override fun onNext(checkerTasks: List<CheckerTask>) {
-                        Log.i("abc", "onNext called")
                         checkerTasksLive.postValue(checkerTasks)
-                        Log.i("abc", "After postValue "+ checkerTasks)
                     }
                 }))
-
     }
 
-    fun approveCheckerEntry(auditId : Int) {
-        Log.i("abc", "approveCheckerEntry called")
+    fun approveCheckerEntry(auditId: Int) {
         subscription.add(dataManager.approveCheckerEntry(auditId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(object : Subscriber<GenericResponse>() {
                     override fun onCompleted() {
-
                     }
 
                     override fun onError(e: Throwable) {
-
-
+                        status.value = Status.APPROVE_ERROR
                     }
 
-                    override fun onNext(Response : GenericResponse) {
-                        Log.i("def", Response.toString())
+                    override fun onNext(Response: GenericResponse) {
+                        status.value = Status.APPROVE_SUCCESS
                     }
                 }))
     }
 
-    fun rejectCheckerEntry(auditId : Int) {
-        Log.i("abc", "rejectCheckerEntry called")
+    fun rejectCheckerEntry(auditId: Int) {
         subscription.add(dataManager.rejectCheckerEntry(auditId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(object : Subscriber<GenericResponse>() {
                     override fun onCompleted() {
-
                     }
 
                     override fun onError(e: Throwable) {
-
-
+                        status.value = Status.REJECT_ERROR
                     }
 
-                    override fun onNext(Response : GenericResponse) {
-                        Log.i("reject response", Response.toString())
+                    override fun onNext(Response: GenericResponse) {
+                        status.value = Status.REJECT_SUCCESS
                     }
                 }))
     }
 
-    fun deleteCheckerEntry(auditId : Int) {
-        Log.i("abc", "approveCheckerEntry called")
+    fun deleteCheckerEntry(auditId: Int) {
         subscription.add(dataManager.deleteCheckerEntry(auditId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(object : Subscriber<GenericResponse>() {
                     override fun onCompleted() {
-
                     }
 
                     override fun onError(e: Throwable) {
-
-
+                        status.value = Status.DELETE_ERROR
                     }
 
-                    override fun onNext(Response : GenericResponse) {
-                        Log.i("def", Response.toString())
+                    override fun onNext(Response: GenericResponse) {
+                        status.value = Status.DELETE_SUCCESS
                     }
                 }))
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        subscription.unsubscribe()
-        Log.i("abc", "ViewModel Cleared"+subscription.isUnsubscribed)
-
     }
 }

@@ -1,143 +1,26 @@
 package com.mifos.mifosxdroid.adapters
 
-import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.mifos.mifosxdroid.R
 import com.mifos.objects.CheckerTask
 import kotlinx.android.synthetic.main.item_checker_task.view.*
-import android.support.annotation.NonNull
-import android.support.v7.util.DiffUtil
-import android.widget.ImageView
-import android.widget.TextView
-
-
-//class CheckerTaskListAdapter
-//    : ListAdapter<CheckerTask, CheckerTaskListAdapter.ViewHolder>(
-//        object : DiffUtil.ItemCallback<CheckerTask>() {
-//            override fun areItemsTheSame(oldItem: CheckerTask?, newItem: CheckerTask?): Boolean {
-//                return oldItem?.id == newItem?.id
-//            }
-//
-//            override fun areContentsTheSame(oldItem: CheckerTask?, newItem: CheckerTask?): Boolean {
-//                return oldItem == newItem
-//            }
-//        }) {
-//
-//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        val checkerTask = getItem(position)
-//        holder.tvCheckerTaskId.text = checkerTask.id.toString()
-//        holder.tvCheckerTaskDate.text = checkerTask.getDate()
-//        holder.tvCheckerTaskStatus.text = checkerTask.status
-//        holder.tvCheckerTaskMaker.text = checkerTask.maker
-//        holder.tvCheckerTaskAction.text = checkerTask.action
-//        holder.tvCheckerTaskEntity.text = checkerTask.entity
-//        holder.tvCheckerTaskOptionsEntity.text = checkerTask.entity
-//        holder.tvCheckerTaskOptionsDate.text = checkerTask.getDate()
-//
-//    }
-//
-//    private lateinit var mListener: OnItemClickListener
-//
-//    interface OnItemClickListener {
-//        fun onItemClick(position: Int)
-//        fun onApproveClick(position: Int)
-//        fun onRejectClick(position: Int)
-//        fun onDeleteClick(position: Int)
-//    }
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-//        return ViewHolder(LayoutInflater.from(parent.context)
-//                .inflate(R.layout.item_checker_task, parent,
-//                        false), mListener)
-//    }
-//
-//    fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
-//        mListener = onItemClickListener
-//    }
-//
-//    fun getCheckerTaskAt(position: Int): CheckerTask {
-//        return getItem(position)
-//    }
-//
-//    class ViewHolder(view: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(view) {
-//        val tvCheckerTaskId: TextView = view.tv_checker_task_id
-//        val tvCheckerTaskDate: TextView = view.tv_checker_task_date
-//        val tvCheckerTaskStatus: TextView = view.tv_checker_task_status
-//        val tvCheckerTaskMaker: TextView = view.tv_checker_task_maker
-//        val tvCheckerTaskAction: TextView = view.tv_checker_task_action
-//        val tvCheckerTaskEntity: TextView = view.tv_checker_task_entity
-//        val tvCheckerTaskOptionsEntity: TextView = view.tv_checker_task_options_entity
-//        val tvCheckerTaskOptionsDate: TextView = view.tv_checker_task_options_date
-//
-//        private val ivApproveIcon: ImageView = view.iv_approve_icon
-//        private val ivRejectIcon: ImageView = view.iv_reject_icon
-//        private val ivDeleteIcon: ImageView = view.iv_delete_icon
-//
-//        init {
-//            view.setOnClickListener {
-//                listener?.let {
-//                    val position = adapterPosition
-//                    if (position != RecyclerView.NO_POSITION)
-//                        listener.onItemClick(position)
-//                }
-//
-//                val llCheckerTaskOptions =
-//                        it.findViewById<LinearLayout>(R.id.ll_checker_task_options)
-//                if (llCheckerTaskOptions.visibility == View.GONE) {
-//                    llCheckerTaskOptions.visibility = View.VISIBLE
-//                } else {
-//                    llCheckerTaskOptions.visibility = View.GONE
-//                }
-//            }
-//
-//            ivApproveIcon.setOnClickListener {
-//                Log.i("abc", "Approve Clicked")
-//                listener?.let {
-//                    val position = adapterPosition
-//                    if (position != RecyclerView.NO_POSITION)
-//                        listener.onApproveClick(position)
-//                }
-//            }
-//
-//            ivRejectIcon.setOnClickListener {
-//                Log.i("abc", "Reject Clicked")
-//                listener?.let {
-//                    val position = adapterPosition
-//                    if (position != RecyclerView.NO_POSITION)
-//                        listener.onRejectClick(position)
-//                }
-//            }
-//
-//            ivDeleteIcon.setOnClickListener {
-//                Log.i("abc", "Delete Clicked")
-//                listener?.let {
-//                    val position = adapterPosition
-//                    if (position != RecyclerView.NO_POSITION)
-//                        listener.onDeleteClick(position)
-//                }
-//            }
-//        }
-//    }
-//
-//
-//}
-
 
 class CheckerTaskListAdapter(private var items: MutableList<CheckerTask>)
-  : RecyclerView.Adapter<CheckerTaskListAdapter.ViewHolder>() {
+    : RecyclerView.Adapter<CheckerTaskListAdapter.ViewHolder>() {
 
-    private lateinit var mListener : OnItemClickListener
+    private lateinit var mListener: OnItemClickListener
 
     interface OnItemClickListener {
-        fun onItemClick (position: Int)
-        fun onApproveClick (position: Int)
-        fun onRejectClick (position: Int)
-        fun onDeleteClick (position: Int)
+        fun onItemClick(position: Int)
+        fun onApproveClick(position: Int)
+        fun onRejectClick(position: Int)
+        fun onDeleteClick(position: Int)
     }
 
     override fun getItemCount(): Int {
@@ -147,7 +30,7 @@ class CheckerTaskListAdapter(private var items: MutableList<CheckerTask>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_checker_task, parent,
-                false), mListener)
+                        false), mListener)
     }
 
     fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
@@ -155,73 +38,70 @@ class CheckerTaskListAdapter(private var items: MutableList<CheckerTask>)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder?.tvCheckerTaskId.text = items[position].id.toString()
-        holder?.tvCheckerTaskDate.text = items[position].getDate()
-        holder?.tvCheckerTaskStatus.text = items[position].status
-        holder?.tvCheckerTaskMaker.text = items[position].maker
-        holder?.tvCheckerTaskAction.text = items[position].action
-        holder?.tvCheckerTaskEntity.text = items[position].entity
-        holder?.tvCheckerTaskOptionsEntity.text = items[position].entity
-        holder?.tvCheckerTaskOptionsDate.text = items[position].getDate()
+        holder.tvCheckerTaskId.text = items[position].id.toString()
+        holder.tvCheckerTaskDate.text = items[position].getDate()
+        holder.tvCheckerTaskStatus.text = items[position].status
+        holder.tvCheckerTaskMaker.text = items[position].maker
+        holder.tvCheckerTaskAction.text = items[position].action
+        holder.tvCheckerTaskEntity.text = items[position].entity
+        holder.tvCheckerTaskOptionsEntity.text = items[position].entity
+        holder.tvCheckerTaskOptionsDate.text = items[position].getDate()
     }
 
-     class ViewHolder (view: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(view) {
-        val tvCheckerTaskId = view.tv_checker_task_id
-        val tvCheckerTaskDate = view.tv_checker_task_date
-        val tvCheckerTaskStatus = view.tv_checker_task_status
-        val tvCheckerTaskMaker = view.tv_checker_task_maker
-        val tvCheckerTaskAction = view.tv_checker_task_action
-        val tvCheckerTaskEntity = view.tv_checker_task_entity
-        val tvCheckerTaskOptionsEntity = view.tv_checker_task_options_entity
-        val tvCheckerTaskOptionsDate = view.tv_checker_task_options_date
+    class ViewHolder(view: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(view) {
+        val tvCheckerTaskId: TextView = view.tv_checker_task_id
+        val tvCheckerTaskDate: TextView = view.tv_checker_task_date
+        val tvCheckerTaskStatus: TextView = view.tv_checker_task_status
+        val tvCheckerTaskMaker: TextView = view.tv_checker_task_maker
+        val tvCheckerTaskAction: TextView = view.tv_checker_task_action
+        val tvCheckerTaskEntity: TextView = view.tv_checker_task_entity
+        val tvCheckerTaskOptionsEntity: TextView = view.tv_checker_task_options_entity
+        val tvCheckerTaskOptionsDate: TextView = view.tv_checker_task_options_date
 
-         val ivApproveIcon = view.iv_approve_icon
-         val ivRejectIcon = view.iv_reject_icon
-         val ivDeleteIcon = view.iv_delete_icon
+        private val ivApproveIcon: ImageView = view.iv_approve_icon
+        private val ivRejectIcon: ImageView = view.iv_reject_icon
+        private val ivDeleteIcon: ImageView = view.iv_delete_icon
 
-         init {
-             view.setOnClickListener {
-                 listener?.let {
-                     val position = adapterPosition
-                     if (position != RecyclerView.NO_POSITION)
-                         listener.onItemClick(position)
-                 }
+        init {
+            view.setOnClickListener {
+                listener?.let {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION)
+                        listener.onItemClick(position)
+                }
 
-                 val llCheckerTaskOptions =
-                         it.findViewById<LinearLayout>(R.id.ll_checker_task_options)
-                 if (llCheckerTaskOptions.visibility == View.GONE) {
-                     llCheckerTaskOptions.visibility = View.VISIBLE
-                 } else {
-                     llCheckerTaskOptions.visibility = View.GONE
-                 }
-             }
+                val llCheckerTaskOptions =
+                        it.findViewById<LinearLayout>(R.id.ll_checker_task_options)
+                if (llCheckerTaskOptions.visibility == View.GONE) {
+                    llCheckerTaskOptions.visibility = View.VISIBLE
+                } else {
+                    llCheckerTaskOptions.visibility = View.GONE
+                }
+            }
 
-             ivApproveIcon.setOnClickListener {
-                 Log.i("abc", "Approve Clicked")
-                 listener?.let {
-                     val position = adapterPosition
-                     if (position != RecyclerView.NO_POSITION)
-                         listener.onApproveClick(position)
-                 }
-             }
+            ivApproveIcon.setOnClickListener {
+                listener?.let {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION)
+                        listener.onApproveClick(position)
+                }
+            }
 
-             ivRejectIcon.setOnClickListener {
-                 Log.i("abc", "Reject Clicked")
-                 listener?.let {
-                     val position = adapterPosition
-                     if (position != RecyclerView.NO_POSITION)
-                         listener.onRejectClick(position)
-                 }
-             }
+            ivRejectIcon.setOnClickListener {
+                listener?.let {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION)
+                        listener.onRejectClick(position)
+                }
+            }
 
-             ivDeleteIcon.setOnClickListener {
-                 Log.i("abc", "Delete Clicked")
-                 listener?.let {
-                     val position = adapterPosition
-                     if (position != RecyclerView.NO_POSITION)
-                         listener.onDeleteClick(position)
-                 }
-             }
-         }
-     }
+            ivDeleteIcon.setOnClickListener {
+                listener?.let {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION)
+                        listener.onDeleteClick(position)
+                }
+            }
+        }
+    }
 }

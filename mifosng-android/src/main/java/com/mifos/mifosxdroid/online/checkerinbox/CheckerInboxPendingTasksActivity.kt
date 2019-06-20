@@ -1,11 +1,9 @@
 package com.mifos.mifosxdroid.online.checkerinbox
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.mifos.mifosxdroid.R
 import com.mifos.mifosxdroid.core.MifosBaseActivity
-import com.mifos.mifosxdroid.online.runreports.reportcategory.ReportCategoryFragment
-import kotlinx.android.synthetic.main.toolbar.*
+
 
 class CheckerInboxPendingTasksActivity : MifosBaseActivity() {
 
