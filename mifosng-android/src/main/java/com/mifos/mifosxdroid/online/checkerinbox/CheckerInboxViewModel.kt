@@ -17,11 +17,20 @@ import javax.inject.Inject
 enum class Status {
     APPROVE_SUCCESS,
     APPROVE_ERROR,
+    APPROVE_COMPLETED,
     REJECT_SUCCESS,
     REJECT_ERROR,
+    REJECT_COMPLETED,
     DELETE_SUCCESS,
     DELETE_ERROR,
+    DELETE_COMPLETED
 }
+
+//enum class CompleteStatus {
+//    DELETE_COMPLETED,
+//    APPROVE_COMPLETED,
+//    REJECT_COMPLETED
+//}
 
 class CheckerInboxViewModel @Inject constructor(
         val dataManager: DataManagerCheckerInbox,
@@ -40,11 +49,17 @@ class CheckerInboxViewModel @Inject constructor(
         return checkerTasksLive
     }
 
+//    private val completeStatus = MutableLiveData<CompleteStatus>()
+
     fun getStatus(): LiveData<Status> {
         return status
     }
 
-    private fun loadCheckerTasks() {
+//    fun getCompleteStatus(): LiveData<CompleteStatus> {
+//        return completeStatus
+//    }
+
+     fun loadCheckerTasks() {
         subscription.add(dataManager.getCheckerTaskList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -98,18 +113,22 @@ class CheckerInboxViewModel @Inject constructor(
     }
 
     fun deleteCheckerEntry(auditId: Int) {
+        Log.i("abcde", "Id supplied to deleteCheckerEntry: " + auditId)
         subscription.add(dataManager.deleteCheckerEntry(auditId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(object : Subscriber<GenericResponse>() {
                     override fun onCompleted() {
+//                        completeStatus.value = CompleteStatus.DELETE_COMPLETED
                     }
 
                     override fun onError(e: Throwable) {
+                        Log.i("abcde", "onError called")
                         status.value = Status.DELETE_ERROR
                     }
 
                     override fun onNext(Response: GenericResponse) {
+                        Log.i("abcde", "onNext called")
                         status.value = Status.DELETE_SUCCESS
                     }
                 }))
