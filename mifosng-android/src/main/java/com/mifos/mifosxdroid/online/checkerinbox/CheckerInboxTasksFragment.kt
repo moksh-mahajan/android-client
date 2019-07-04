@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,11 @@ import kotlinx.android.synthetic.main.activity_checker_inbox.*
 import kotlinx.android.synthetic.main.checker_inbox_tasks_fragment.*
 import javax.inject.Inject
 
-class CheckerInboxTasksFragment : MifosBaseFragment() {
+class CheckerInboxTasksFragment : MifosBaseFragment(), SwipeRefreshLayout.OnRefreshListener {
+    override fun onRefresh() {
+        viewModel.loadCheckerTasks()
+        viewModel.loadRescheduleLoanTasks()
+    }
 
     companion object {
         fun newInstance() = CheckerInboxTasksFragment()
@@ -31,6 +36,7 @@ class CheckerInboxTasksFragment : MifosBaseFragment() {
     lateinit var factory: CheckerInboxViewModelFactory
     private lateinit var viewModel: CheckerInboxTasksViewModel
     private lateinit var rootView: View
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +48,8 @@ class CheckerInboxTasksFragment : MifosBaseFragment() {
         setToolbarTitle(resources.getString(R.string.checker_inbox_and_pending_tasks))
         rootView = inflater.inflate(R.layout.checker_inbox_tasks_fragment,
                 container, false)
+        swipeRefreshLayout = rootView.findViewById(R.id.swipe_refresh_layout)
+        swipeRefreshLayout.setOnRefreshListener(this)
         return rootView
     }
 
@@ -68,6 +76,7 @@ class CheckerInboxTasksFragment : MifosBaseFragment() {
                 Observer { status ->
                     status?.let {
                         hideMifosProgressBar()
+                        swipeRefreshLayout.isRefreshing = false
                         ll_checker_inbox_tasks.visibility = View.VISIBLE
                     }
                 })

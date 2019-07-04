@@ -3,8 +3,10 @@ package com.mifos.mifosxdroid.online.checkerinbox
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel;
+import android.util.Log
 import com.mifos.api.datamanager.DataManagerCheckerInbox
 import com.mifos.objects.CheckerTask
+import com.mifos.objects.checkerinboxandtasks.CheckerInboxSearchTemplate
 import com.mifos.objects.checkerinboxandtasks.RescheduleLoansTask
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
@@ -34,7 +36,7 @@ class CheckerInboxTasksViewModel @Inject constructor(
         return rescheduleLoanTasksLive
     }
 
-    private fun loadRescheduleLoanTasks() {
+    fun loadRescheduleLoanTasks() {
         subscription.add(dataManager.getRechdeduleLoansTaskList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -59,7 +61,7 @@ class CheckerInboxTasksViewModel @Inject constructor(
         return checkerTasksLive
     }
 
-    private fun loadCheckerTasks() {
+    fun loadCheckerTasks() {
         subscription.add(dataManager.getCheckerTaskList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

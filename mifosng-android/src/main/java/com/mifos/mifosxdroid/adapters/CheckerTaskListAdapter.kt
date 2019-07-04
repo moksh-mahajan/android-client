@@ -1,21 +1,17 @@
 package com.mifos.mifosxdroid.adapters
 
-import android.content.Context
+import android.support.v7.recyclerview.extensions.ListAdapter
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.*
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import com.mifos.mifosxdroid.R
 import com.mifos.mifosxdroid.online.checkerinbox.CheckerInboxFragment
 import com.mifos.objects.CheckerTask
 import kotlinx.android.synthetic.main.item_checker_task.view.*
 
-class CheckerTaskListAdapter(private var items: MutableList<CheckerTask>,
-                             private var checkerInboxFragment: CheckerInboxFragment)
-    : RecyclerView.Adapter<CheckerTaskListAdapter.ViewHolder>() {
+class CheckerTaskListAdapter(private var checkerInboxFragment: CheckerInboxFragment)
+    : ListAdapter<CheckerTask, CheckerTaskListAdapter.ViewHolder>(TaskDiffCallback()) {
 
     private lateinit var mListener: OnItemClickListener
 
@@ -26,10 +22,15 @@ class CheckerTaskListAdapter(private var items: MutableList<CheckerTask>,
         fun onDeleteClick(position: Int)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    class TaskDiffCallback : DiffUtil.ItemCallback<CheckerTask>() {
+        override fun areItemsTheSame(oldItem: CheckerTask?, newItem: CheckerTask?): Boolean {
+            return oldItem?.id == newItem?.id
+        }
 
+        override fun areContentsTheSame(oldItem: CheckerTask?, newItem: CheckerTask?): Boolean {
+            return oldItem?.resourceId == newItem?.resourceId
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context)
@@ -41,20 +42,24 @@ class CheckerTaskListAdapter(private var items: MutableList<CheckerTask>,
         mListener = onItemClickListener
     }
 
-    fun filterList(filteredList: MutableList<CheckerTask>) {
-        items = filteredList
-        notifyDataSetChanged()
+    override fun submitList(list: MutableList<CheckerTask>?) {
+        list?.let {
+            val mList = mutableListOf<CheckerTask>()
+            mList.addAll(list)
+            super.submitList(mList)
+        }
+
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvCheckerTaskId.text = items[position].id.toString()
-        holder.tvCheckerTaskDate.text = items[position].getDate()
-        holder.tvCheckerTaskStatus.text = items[position].status
-        holder.tvCheckerTaskMaker.text = items[position].maker
-        holder.tvCheckerTaskAction.text = items[position].action
-        holder.tvCheckerTaskEntity.text = items[position].entity
-        holder.tvCheckerTaskOptionsEntity.text = items[position].entity
-        holder.tvCheckerTaskOptionsDate.text = items[position].getDate()
+        holder.tvCheckerTaskId.text = getItem(position).id.toString()
+        holder.tvCheckerTaskDate.text = getItem(position).getDate()
+        holder.tvCheckerTaskStatus.text = getItem(position).status
+        holder.tvCheckerTaskMaker.text = getItem(position).maker
+        holder.tvCheckerTaskAction.text = getItem(position).action
+        holder.tvCheckerTaskEntity.text = getItem(position).entity
+        holder.tvCheckerTaskOptionsEntity.text = getItem(position).entity
+        holder.tvCheckerTaskOptionsDate.text = getItem(position).getDate()
 
         if (checkerInboxFragment.inBadgeProcessingMode) {
             holder.cbCheckerTask.isChecked = false
@@ -87,7 +92,6 @@ class CheckerTaskListAdapter(private var items: MutableList<CheckerTask>,
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION)
                         listener.onItemClick(position)
-                    Log.i("ttt", "Item clicked")
                 }
                 val llCheckerTaskOptions =
                         view.findViewById<LinearLayout>(R.id.ll_checker_task_options)
@@ -132,3 +136,4 @@ class CheckerTaskListAdapter(private var items: MutableList<CheckerTask>,
         }
     }
 }
+

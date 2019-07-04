@@ -7,6 +7,7 @@ import android.util.Log
 import com.mifos.api.GenericResponse
 import com.mifos.api.datamanager.DataManagerCheckerInbox
 import com.mifos.objects.CheckerTask
+import com.mifos.objects.checkerinboxandtasks.CheckerInboxSearchTemplate
 import com.mifos.objects.checkerinboxandtasks.RescheduleLoansTask
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
@@ -26,12 +27,6 @@ enum class Status {
     DELETE_COMPLETED
 }
 
-//enum class CompleteStatus {
-//    DELETE_COMPLETED,
-//    APPROVE_COMPLETED,
-//    REJECT_COMPLETED
-//}
-
 class CheckerInboxViewModel @Inject constructor(
         val dataManager: DataManagerCheckerInbox,
         val subscription: CompositeSubscription
@@ -43,24 +38,29 @@ class CheckerInboxViewModel @Inject constructor(
         }
     }
 
+    private val searchTemplateLive: MutableLiveData<CheckerInboxSearchTemplate> by lazy {
+        MutableLiveData<CheckerInboxSearchTemplate>().also {
+            loadSearchTemplate()
+        }
+    }
+
     private val status = MutableLiveData<Status>()
 
     fun getCheckerTasks(): LiveData<List<CheckerTask>> {
         return checkerTasksLive
     }
 
-//    private val completeStatus = MutableLiveData<CompleteStatus>()
+    fun getSearchTemplate(): LiveData<CheckerInboxSearchTemplate>{
+        return searchTemplateLive
+    }
 
     fun getStatus(): LiveData<Status> {
         return status
     }
 
-//    fun getCompleteStatus(): LiveData<CompleteStatus> {
-//        return completeStatus
-//    }
-
-     fun loadCheckerTasks() {
-        subscription.add(dataManager.getCheckerTaskList()
+    fun loadCheckerTasks(actionName: String? = null, entityName: String? = null,
+                                 resourceId: Int? = null) {
+        subscription.add(dataManager.getCheckerTaskList(actionName, entityName, resourceId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(object : Subscriber<List<CheckerTask>>() {
@@ -130,6 +130,25 @@ class CheckerInboxViewModel @Inject constructor(
                     override fun onNext(Response: GenericResponse) {
                         Log.i("abcde", "onNext called")
                         status.value = Status.DELETE_SUCCESS
+                    }
+                }))
+    }
+
+    private fun loadSearchTemplate() {
+        subscription.add(dataManager.getCheckerInboxSearchTemplate()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(object : Subscriber<CheckerInboxSearchTemplate>() {
+                    override fun onCompleted() {
+                    }
+
+                    override fun onError(e: Throwable) {
+                        Log.i("chek", "onError")
+                    }
+
+                    override fun onNext(checkerInboxSearchTemplate: CheckerInboxSearchTemplate) {
+                        Log.i("chek", checkerInboxSearchTemplate.entityNames.toString())
+                        searchTemplateLive.postValue(checkerInboxSearchTemplate)
                     }
                 }))
     }

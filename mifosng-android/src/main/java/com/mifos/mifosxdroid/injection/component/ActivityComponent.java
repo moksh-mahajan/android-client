@@ -3,6 +3,7 @@ package com.mifos.mifosxdroid.injection.component;
 import com.mifos.mifosxdroid.activity.pathtracking.PathTrackingActivity;
 import com.mifos.mifosxdroid.activity.pinpointclient.PinpointClientActivity;
 import com.mifos.mifosxdroid.dialogfragments.chargedialog.ChargeDialogFragment;
+import com.mifos.mifosxdroid.dialogfragments.checkertaskfilterdialog.CheckerTaskFilterDialogFragment;
 import com.mifos.mifosxdroid.dialogfragments.collectionsheetdialog.CollectionSheetDialogFragment;
 import com.mifos.mifosxdroid.dialogfragments.datatablerowdialog.DataTableRowDialogFragment;
 import com.mifos.mifosxdroid.dialogfragments.documentdialog.DocumentDialogFragment;
@@ -70,6 +71,7 @@ import com.mifos.mifosxdroid.online.search.SearchFragment;
 import com.mifos.mifosxdroid.online.surveylist.SurveyListFragment;
 import com.mifos.mifosxdroid.online.surveysubmit.SurveySubmitFragment;
 import com.mifos.mifosxdroid.passcode.PassCodeActivity;
+import com.mifos.objects.CheckerTask;
 
 import dagger.Component;
 
@@ -217,5 +219,7 @@ public interface ActivityComponent {
     void inject(CheckerInboxTasksFragment checkerInboxTasksFragment);
 
     void inject(CheckerInboxFragment checkerInboxFragment);
+
+    void inject(CheckerTaskFilterDialogFragment checkerTaskFilterDialogFragment);
 
 }
