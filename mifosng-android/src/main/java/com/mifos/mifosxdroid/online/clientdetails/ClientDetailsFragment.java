@@ -117,6 +117,12 @@ public class ClientDetailsFragment extends MifosBaseFragment implements ClientDe
     @BindView(R.id.tv_office)
     TextView tv_office;
 
+    @BindView(R.id.tv_group)
+    TextView tv_group;
+
+    @BindView(R.id.tv_mobile_no)
+    TextView tv_mobile_no;
+
     @BindView(R.id.iv_clientImage)
     CircularImageView iv_clientImage;
 
@@ -143,6 +149,9 @@ public class ClientDetailsFragment extends MifosBaseFragment implements ClientDe
 
     @BindView(R.id.row_loan)
     TableRow rowLoan;
+
+    @BindView(R.id.tableRow_mobile_no)
+    TableRow rowMobileNo;
 
     @BindView(R.id.ll_bottom_panel)
     LinearLayout llBottomPanel;
@@ -430,12 +439,20 @@ public class ClientDetailsFragment extends MifosBaseFragment implements ClientDe
             }
             tv_fullName.setText(client.getDisplayName());
             tv_accountNumber.setText(client.getAccountNo());
+            tv_group.setText(client.getGroupNames());
             tv_externalId.setText(client.getExternalId());
+            tv_mobile_no.setText(client.getMobileNo());
             if (TextUtils.isEmpty(client.getAccountNo()))
                 rowAccount.setVisibility(GONE);
 
             if (TextUtils.isEmpty(client.getExternalId()))
                 rowExternal.setVisibility(GONE);
+
+            if (TextUtils.isEmpty(client.getGroupNames()))
+                rowGroup.setVisibility(GONE);
+
+            if (TextUtils.isEmpty(client.getMobileNo()))
+                rowMobileNo.setVisibility(GONE);
 
             try {
                 String dateString = Utils.getStringOfDate(
