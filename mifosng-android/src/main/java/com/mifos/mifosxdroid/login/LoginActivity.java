@@ -6,11 +6,14 @@
 package com.mifos.mifosxdroid.login;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,16 +23,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.mifos.api.BaseApiManager;
+import com.mifos.mifosxdroid.PromptScreen;
 import com.mifos.mifosxdroid.R;
+import com.mifos.mifosxdroid.SplashScreenActivity;
 import com.mifos.mifosxdroid.core.MifosBaseActivity;
 import com.mifos.mifosxdroid.core.util.Toaster;
 import com.mifos.mifosxdroid.online.DashboardActivity;
 import com.mifos.mifosxdroid.passcode.PassCodeActivity;
+import com.mifos.mobile.passcode.utils.PassCodeConstants;
 import com.mifos.objects.user.User;
 import com.mifos.utils.Constants;
 import com.mifos.utils.Network;
 import com.mifos.utils.PrefManager;
 import com.mifos.utils.ValidationUtil;
+import com.moksh.fingerprintauthenticationlibrary.FPAuthCallback;
+import com.moksh.fingerprintauthenticationlibrary.FPAuthDialog;
+
+import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 import butterknife.BindView;
@@ -189,14 +199,93 @@ public class LoginActivity extends MifosBaseActivity implements LoginMvpView {
         Toast.makeText(this, getString(R.string.toast_welcome) + " " + user.getUsername(),
                 Toast.LENGTH_SHORT).show();
 
-        if (PrefManager.getPassCodeStatus()) {
-            startActivity(new Intent(this, DashboardActivity.class));
-        } else {
-            Intent intent = new Intent(this, PassCodeActivity.class);
-            intent.putExtra(Constants.INTIAL_LOGIN, true);
+        FingerprintManagerCompat fp = FingerprintManagerCompat.from(this);
+        if (!fp.hasEnrolledFingerprints() || Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            Intent intent = new Intent(this,
+                    PassCodeActivity.class);
+            intent.putExtra(PassCodeConstants.PASSCODE_INITIAL_LOGIN, true);
             startActivity(intent);
+            finish();
+        } else {
+            startActivity(new Intent(this, PromptScreen.class));
+            finish();
         }
-        finish();
+
+//        if (PrefManager.getPassCodeStatus()) {
+//            startActivity(new Intent(this, DashboardActivity.class));
+//        } else {
+//            Intent intent = new Intent(this, PassCodeActivity.class);
+//            intent.putExtra(Constants.INTIAL_LOGIN, true);
+//            startActivity(intent);
+//       }
+//        finish();
+
+//        if (PrefManager.getAuthenticationType().isEmpty()) {
+//            Log.i("TAGGER", "Auth Type: " + PrefManager.getAuthenticationType());
+//            startActivity(new Intent(this, PromptScreen.class));
+//        } else {
+//            if (PrefManager.getAuthenticationType().equalsIgnoreCase("Passcode")) {
+//                //Check for Passcode status
+//                if (PrefManager.getPassCodeStatus()) {
+//                    startActivity(new Intent(this, DashboardActivity.class));
+//                } else {
+//                    Intent intent = new Intent(this, PassCodeActivity.class);
+//                    intent.putExtra(Constants.INTIAL_LOGIN, true);
+//                    startActivity(intent);
+//                }
+//            } else {
+//                startActivity(new Intent(this, DashboardActivity.class));
+//                //Show Fingerprint dialog
+////                FPAuthDialog.create(this)
+////                        .setTitle("Login to Mifos X")
+////                        .setMessage("Use Fingerprint to access app")
+////                        .setCallback(new FPAuthCallback() {
+////                            @Override
+////                            public void onBelowAndroidMarshmallow() {
+////                                Intent intent = new Intent(LoginActivity.this,
+////                                        PassCodeActivity.class);
+////                                intent.putExtra(PassCodeConstants.PASSCODE_INITIAL_LOGIN, true);
+////                                startActivity(intent);
+////                            }
+////
+////                            @Override
+////                            public void onNoFingerprintScannerAvailable() {
+////                                Intent intent = new Intent(LoginActivity.this,
+////                                        PassCodeActivity.class);
+////                                intent.putExtra(PassCodeConstants.PASSCODE_INITIAL_LOGIN, true);
+////                                startActivity(intent);
+////                            }
+////
+////                            @Override
+////                            public void onNoFingerprintRegistered() {
+////                                Intent intent = new Intent(LoginActivity.this,
+////                                        PassCodeActivity.class);
+////                                intent.putExtra(PassCodeConstants.PASSCODE_INITIAL_LOGIN, true);
+////                                startActivity(intent);
+////                            }
+////
+////                            @Override
+////                            public void onFingerprintAuthSuccess(@NotNull String s) {
+////                                startActivity(new Intent(LoginActivity.this,
+////                                        DashboardActivity.class));
+////                                LoginActivity.this.finish();
+////                            }
+////
+////                            @Override
+////                            public void onFingerprintAuthFailed(@NotNull String s) {
+////
+////                            }
+////
+////                            @Override
+////                            public void onCancel() {
+////                                startActivity(new Intent(LoginActivity.this,
+////                                        LoginActivity.class));
+////                                LoginActivity.this.finish();
+////                            }
+////                        }).show();
+//            }
+//        }
+//        finish();
     }
 
     @Override

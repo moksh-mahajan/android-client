@@ -19,7 +19,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MaterialAppTheme">
-        <activity android:name=".online.checkerinbox.CheckerInboxPendingTasksActivity"></activity>
+        <activity android:name=".PromptScreen"></activity>
+        <activity android:name=".online.checkerinbox.CheckerInboxPendingTasksActivity" />
         <activity android:name=".online.checkerinbox.CheckerInboxActivity" />
 
         <meta-data
