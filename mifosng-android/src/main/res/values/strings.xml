@@ -774,6 +774,7 @@
     <string name="error_passcode">Passcode should be of 4 digit</string>
     <string name="title_activity_sync_client_payload" translatable="false">SyncClientPayloadActivity</string>
     <string name="client_search_hint"></string>
+    <string name="prompt_screen_message">How would you like to access the app?</string>
 
 
 </resources>

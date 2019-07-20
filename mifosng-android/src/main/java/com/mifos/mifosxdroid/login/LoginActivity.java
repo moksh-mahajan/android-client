@@ -19,8 +19,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.github.mokshmahajan.fpauthdialoglibrary.FpAuthCallback;
+import com.github.mokshmahajan.fpauthdialoglibrary.FpAuthDialog;
+import com.github.mokshmahajan.fpauthdialoglibrary.FpAuthSupport;
 import com.mifos.api.BaseApiManager;
+import com.mifos.mifosxdroid.FingerprintPasscodePromptActivity;
 import com.mifos.mifosxdroid.R;
+import com.mifos.mifosxdroid.SplashScreenActivity;
 import com.mifos.mifosxdroid.core.MifosBaseActivity;
 import com.mifos.mifosxdroid.core.util.Toaster;
 import com.mifos.mifosxdroid.online.DashboardActivity;
@@ -31,7 +37,10 @@ import com.mifos.utils.Network;
 import com.mifos.utils.PrefManager;
 import com.mifos.utils.ValidationUtil;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -74,6 +83,7 @@ public class LoginActivity extends MifosBaseActivity implements LoginMvpView {
     private String password;
     private String domain;
     private boolean isValidUrl = false;
+    private FpAuthDialog fpAuthDialog;
 
     private TextWatcher urlWatcher = new TextWatcher() {
         @Override
@@ -149,12 +159,14 @@ public class LoginActivity extends MifosBaseActivity implements LoginMvpView {
         }
         return true;
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_login, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -189,12 +201,15 @@ public class LoginActivity extends MifosBaseActivity implements LoginMvpView {
         Toast.makeText(this, getString(R.string.toast_welcome) + " " + user.getUsername(),
                 Toast.LENGTH_SHORT).show();
 
-        if (PrefManager.getPassCodeStatus()) {
-            startActivity(new Intent(this, DashboardActivity.class));
-        } else {
+        if (!FpAuthSupport.checkAvailabiltyAndIfFingerprintRegistered(this)) {
+            //Send user to Passcode
             Intent intent = new Intent(this, PassCodeActivity.class);
             intent.putExtra(Constants.INTIAL_LOGIN, true);
             startActivity(intent);
+        } else {
+            //Send user to Prompt Screen
+            startActivity(new Intent(LoginActivity.this,
+                    FingerprintPasscodePromptActivity.class));
         }
         finish();
     }
