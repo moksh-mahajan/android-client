@@ -26,6 +26,7 @@ public class PrefManager {
     private static final String USER_DETAILS = "user_details";
     private static final String PASSCODE = "passcode";
     private static final String PASSCODE_STATUS = "passcode_status";
+    private static final String AUTH_TYPE = "auth_type";
 
     private static Gson gson = new Gson();
 
@@ -202,5 +203,13 @@ public class PrefManager {
      */
     public static Boolean getPassCodeStatus() {
         return getBoolean(PASSCODE_STATUS, false);
+    }
+
+    public static String getAuthType() {
+        return getString(AUTH_TYPE, "");
+    }
+
+    public static void setAuthType(String fpAuthType) {
+        putString(AUTH_TYPE, fpAuthType);
     }
 }

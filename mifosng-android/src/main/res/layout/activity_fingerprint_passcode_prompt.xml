@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_mifos_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/mifos_logo" />
+
+    <RelativeLayout
+        android:id="@+id/rl_prompt_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingLeft="@dimen/layout_padding_24dp">
+
+        <TextView
+            android:id="@+id/tv_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/prompt_screen_message" />
+
+        <RadioGroup
+            android:id="@+id/rg_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_heading">
+
+            <RadioButton
+                android:id="@+id/rb_passcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="checkButton"
+                android:text="Passcode"
+                android:textSize="@dimen/text_size_20sp" />
+
+            <RadioButton
+                android:id="@+id/rb_fp_auth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="checkButton"
+                android:text="Fingerprint Authentication"
+                android:textSize="@dimen/text_size_20sp" />
+        </RadioGroup>
+
+
+        <Button
+            android:id="@+id/btn_proceed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg_options"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="Proceed" />
+    </RelativeLayout>
+</RelativeLayout>
+
