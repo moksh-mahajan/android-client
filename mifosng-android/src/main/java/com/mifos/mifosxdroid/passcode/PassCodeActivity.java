@@ -18,6 +18,11 @@ public class PassCodeActivity extends MifosPassCodeActivity {
     }
 
     @Override
+    public String getFingerprintDialogTitle() {
+        return getString(R.string.login_to_mifos);
+    }
+
+    @Override
     public void startNextActivity() {
         startActivity(new Intent(this, DashboardActivity.class));
     }
