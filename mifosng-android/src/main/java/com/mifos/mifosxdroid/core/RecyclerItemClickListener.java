@@ -119,6 +119,10 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
             return true;
         }
 
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            return true;
+        }
     }
 
 }

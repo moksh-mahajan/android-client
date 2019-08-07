@@ -20,4 +20,11 @@
         <attr name="border_color" format="color"></attr>
         <attr name="shadow" format="boolean"></attr>
     </declare-styleable>
+
+    <declare-styleable name="SwipeRevealLayout">
+        <attr name="dragFromEdge">
+            <flag name="left" value="1" />
+            <flag name="right" value="2" />
+        </attr>
+    </declare-styleable>
 </resources>
