@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_visual_status"
+                android:layout_width="6dp"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="#F8E71C"
+                app:cardCornerRadius="8dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp">
+
+            </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_checker_task_id"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="245"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_checker_task_action"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        tools:text="Approve"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_checker_task_entity"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        tools:text="Client"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/cb_checker_task"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:visibility="invisible"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_checker_task_status"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Awaiting Approval" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Created by" />
+
+                <TextView
+                    android:id="@+id/tv_checker_task_maker"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="Ed Cable"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_checker_task_date"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="24 Jun 2019"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_dark" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_checker_task_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_light"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_checker_task_options_entity"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Client"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/iv_approve_icon"
+                    android:layout_width="@dimen/dimension_32_dp"
+                    android:layout_height="@dimen/dimension_32_dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/layout_padding_16dp"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_check_green_24dp" />
+
+                <ImageView
+                    android:id="@+id/iv_reject_icon"
+                    android:layout_width="@dimen/dimension_32_dp"
+                    android:layout_height="@dimen/dimension_32_dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/layout_padding_16dp"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_clear_yellow_24dp" />
+
+                <ImageView
+                    android:id="@+id/iv_delete_icon"
+                    android:layout_width="@dimen/dimension_32_dp"
+                    android:layout_height="@dimen/dimension_32_dp"
+                    android:layout_centerVertical="true"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_delete_red_24dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_checker_task_options_date"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
+                tools:text="24 Jun 2019" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_dark" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:orientation="vertical"--><!--android:padding="12dp">-->
+
+    <!--<LinearLayout--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:orientation="horizontal">-->
+
+    <!--<TextView--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:text="ID"--><!--android:textStyle="bold"/>-->
+
+    <!--<TextView--><!--android:id="@+id/tv_checker_task_id"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:gravity="right"--><!--tools:text="ID" />--><!--</LinearLayout>-->
+
+    <!--<LinearLayout--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:orientation="horizontal">-->
+
+    <!--<TextView--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:text="Made on Date"--><!--android:textStyle="bold"/>-->
+
+    <!--<TextView--><!--android:id="@+id/tv_checker_task_date"--><!--android:layout_width="match_parent"--><!--android:gravity="right"--><!--android:layout_height="wrap_content"--><!--tools:text="Made on Date" />--><!--</LinearLayout>-->
+
+    <!--<LinearLayout--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:orientation="horizontal">-->
+
+    <!--<TextView--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:text="Status"--><!--android:textStyle="bold"/>-->
+
+    <!--<TextView--><!--android:id="@+id/tv_checker_task_status"--><!--android:layout_width="match_parent"--><!--android:gravity="right"--><!--android:layout_height="wrap_content"--><!--tools:text="Status" />--><!--</LinearLayout>-->
+
+    <!--<LinearLayout--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:orientation="horizontal">-->
+
+    <!--<TextView--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:text="Action"--><!--android:textStyle="bold"/>-->
+
+    <!--<TextView--><!--android:id="@+id/tv_checker_task_action"--><!--android:layout_width="match_parent"--><!--android:gravity="right"--><!--android:layout_height="wrap_content"--><!--tools:text="Action" />--><!--</LinearLayout>-->
+
+    <!--<LinearLayout--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:orientation="horizontal">-->
+
+    <!--<TextView--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:text="Entity"--><!--android:textStyle="bold"/>-->
+
+    <!--<TextView--><!--android:id="@+id/tv_checker_task_entity"--><!--android:layout_width="match_parent"--><!--android:gravity="right"--><!--android:layout_height="wrap_content"--><!--tools:text="Entity" />--><!--</LinearLayout>-->
+
+    <!--<View--><!--android:layout_width="match_parent"--><!--android:layout_height="1dp"--><!--android:background="@color/black"/>--><!--</LinearLayout>-->
