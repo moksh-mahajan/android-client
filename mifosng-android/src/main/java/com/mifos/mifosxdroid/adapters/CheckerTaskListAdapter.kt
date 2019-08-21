@@ -1,8 +1,8 @@
 package com.mifos.mifosxdroid.adapters
 
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.*
 import android.widget.*
 import com.mifos.mifosxdroid.R
@@ -23,13 +23,14 @@ class CheckerTaskListAdapter(private var checkerInboxFragment: CheckerInboxFragm
     }
 
     class TaskDiffCallback : DiffUtil.ItemCallback<CheckerTask>() {
-        override fun areItemsTheSame(oldItem: CheckerTask?, newItem: CheckerTask?): Boolean {
-            return oldItem?.id == newItem?.id
+        override fun areItemsTheSame(oldItem: CheckerTask, newItem: CheckerTask): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: CheckerTask?, newItem: CheckerTask?): Boolean {
-            return oldItem?.resourceId == newItem?.resourceId
+        override fun areContentsTheSame(oldItem: CheckerTask, newItem: CheckerTask): Boolean {
+            return oldItem.resourceId == newItem.resourceId
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -71,7 +72,7 @@ class CheckerTaskListAdapter(private var checkerInboxFragment: CheckerInboxFragm
 
     class ViewHolder(view: View, listener: OnItemClickListener,
                      checkerInboxFragment: CheckerInboxFragment) :
-            RecyclerView.ViewHolder(view) {
+            androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         val tvCheckerTaskId: TextView = view.tv_checker_task_id
         val tvCheckerTaskDate: TextView = view.tv_checker_task_date
         val tvCheckerTaskStatus: TextView = view.tv_checker_task_status
@@ -90,7 +91,7 @@ class CheckerTaskListAdapter(private var checkerInboxFragment: CheckerInboxFragm
             view.setOnClickListener {
                 listener?.let {
                     val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION)
+                    if (position != androidx.recyclerview.widget.RecyclerView.NO_POSITION)
                         listener.onItemClick(position)
                 }
                 val llCheckerTaskOptions =
@@ -108,7 +109,7 @@ class CheckerTaskListAdapter(private var checkerInboxFragment: CheckerInboxFragm
             ivApproveIcon.setOnClickListener {
                 listener?.let {
                     val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION)
+                    if (position != androidx.recyclerview.widget.RecyclerView.NO_POSITION)
                         listener.onApproveClick(position)
                 }
             }
@@ -116,7 +117,7 @@ class CheckerTaskListAdapter(private var checkerInboxFragment: CheckerInboxFragm
             ivRejectIcon.setOnClickListener {
                 listener?.let {
                     val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION)
+                    if (position != androidx.recyclerview.widget.RecyclerView.NO_POSITION)
                         listener.onRejectClick(position)
                 }
             }
@@ -124,7 +125,7 @@ class CheckerTaskListAdapter(private var checkerInboxFragment: CheckerInboxFragm
             ivDeleteIcon.setOnClickListener {
                 listener?.let {
                     val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION)
+                    if (position != androidx.recyclerview.widget.RecyclerView.NO_POSITION)
                         listener.onDeleteClick(position)
                 }
 

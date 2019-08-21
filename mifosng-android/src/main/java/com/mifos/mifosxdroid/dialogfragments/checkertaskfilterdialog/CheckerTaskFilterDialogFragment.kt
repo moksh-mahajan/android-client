@@ -1,10 +1,10 @@
 package com.mifos.mifosxdroid.dialogfragments.checkertaskfilterdialog
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
+import androidx.fragment.app.DialogFragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,13 +22,13 @@ import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
-class CheckerTaskFilterDialogFragment : DialogFragment(), MFDatePicker.OnDatePickListener,
+class CheckerTaskFilterDialogFragment : androidx.fragment.app.DialogFragment(), MFDatePicker.OnDatePickListener,
         AdapterView.OnItemSelectedListener {
 
     private lateinit var mOnInputSelected: OnInputSelected
 
-    private lateinit var datePickerFromDate: DialogFragment
-    private lateinit var datePickerToDate: DialogFragment
+    private lateinit var datePickerFromDate: androidx.fragment.app.DialogFragment
+    private lateinit var datePickerToDate: androidx.fragment.app.DialogFragment
     private lateinit var mCurrentDateView: View
     private lateinit var selectedAction: String
     private lateinit var selectedEntity: String

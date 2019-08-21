@@ -1,12 +1,12 @@
 package com.mifos.mifosxdroid.online.checkerinbox
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -73,7 +73,7 @@ class CheckerInboxFragment : MifosBaseFragment(), TextWatcher,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         et_search.addTextChangedListener(this)
-        rv_checker_inbox.layoutManager = LinearLayoutManager(activity)
+        rv_checker_inbox.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         rv_checker_inbox.hasFixedSize()
         checkerTaskListAdapter = CheckerTaskListAdapter(this)
         rv_checker_inbox.adapter = checkerTaskListAdapter

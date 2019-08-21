@@ -1,10 +1,10 @@
 package com.mifos.mifosxdroid.online.checkerinbox
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
+import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_checker_inbox.*
 import kotlinx.android.synthetic.main.checker_inbox_tasks_fragment.*
 import javax.inject.Inject
 
-class CheckerInboxTasksFragment : MifosBaseFragment(), SwipeRefreshLayout.OnRefreshListener {
+class CheckerInboxTasksFragment : MifosBaseFragment(), androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener {
     override fun onRefresh() {
         viewModel.loadCheckerTasks()
         viewModel.loadRescheduleLoanTasks()
@@ -36,7 +36,7 @@ class CheckerInboxTasksFragment : MifosBaseFragment(), SwipeRefreshLayout.OnRefr
     lateinit var factory: CheckerInboxViewModelFactory
     private lateinit var viewModel: CheckerInboxTasksViewModel
     private lateinit var rootView: View
-    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var swipeRefreshLayout: androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
